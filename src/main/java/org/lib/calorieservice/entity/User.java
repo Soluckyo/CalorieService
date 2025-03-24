@@ -36,15 +36,14 @@ public class User {
 
     private KFA kfa;
 
-    public User(double height, double weight, Gender gender, int age, Purpose purpose, int dailyCalorie, KFA kfa) {
+    public User(double height, double weight, Gender gender, int age, Purpose purpose, KFA kfa) {
         this.height = height;
         this.weight = weight;
         this.gender = gender;
         this.age = age;
         this.purpose = purpose;
-        this.dailyCalorie = dailyCalorie;
         this.kfa = kfa;
-        calculateDailyCalories(); // При создании объекта сразу считаем калории
+        calculateDailyCalories();
     }
 
     public User() {}
@@ -52,5 +51,17 @@ public class User {
     private void calculateDailyCalories() {
         CalculateDailyCalories calculateDailyCalories = new CalculateDailyCalories();
         this.dailyCalorie = calculateDailyCalories.calculateDailyCalories(height, weight, gender, age, kfa, purpose);
+    }
+
+    @Override
+    public String toString() {
+        return "user: {" + "height=" + height +
+                ", weight=" + weight +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", dailyCalories=" + dailyCalorie +
+                ", purpose='" + purpose + '\'' +
+                ", kfa=" + kfa +
+                '}';
     }
 }
