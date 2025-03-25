@@ -8,9 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,4 +33,13 @@ public class Meal {
             inverseJoinColumns = @JoinColumn(name = "dish_id" )
     )
     private List<Dish> dishes;
+    private LocalDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    public Meal() {
+        this.dishes = new ArrayList<>();
+        this.createdAt = LocalDateTime.now();
+    }
 }
