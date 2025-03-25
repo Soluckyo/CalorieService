@@ -2,15 +2,21 @@ package org.lib.calorieservice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "users")
 public class User {
 
     @Id
@@ -22,6 +28,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     private int age;
@@ -30,11 +37,16 @@ public class User {
 
     private double weight;
 
+    @Enumerated(EnumType.STRING)
     private Purpose purpose;
 
     private double dailyCalorie;
 
+    @Enumerated(EnumType.STRING)
     private KFA kfa;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Meal meal;
 
     public User(double height, double weight, Gender gender, int age, Purpose purpose, KFA kfa) {
         this.height = height;

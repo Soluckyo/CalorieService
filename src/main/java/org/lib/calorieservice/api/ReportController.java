@@ -1,9 +1,8 @@
 package org.lib.calorieservice.api;
 
 import lombok.RequiredArgsConstructor;
-import org.lib.calorieservice.dto.MealDTO;
 import org.lib.calorieservice.entity.Meal;
-import org.lib.calorieservice.service.UserService;
+import org.lib.calorieservice.service.MealService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/report")
 @RequiredArgsConstructor
-public class UserController {
+public class ReportController {
 
+    private final MealService mealService;
 
-    private final UserService userService;
+    @GetMapping("/history")
+    public void history(){
 
-    @PostMapping("add_meal")
-    public ResponseEntity<Meal> addMeal(@RequestBody MealDTO mealDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.addMeal(mealDTO));
+    }
+
+    @PostMapping("sum_calories")
+    public ResponseEntity<Double> sumCalories(@RequestBody Long mealId) {
+        return null;
+    }
+
+    @PostMapping("/check")
+    public void check(){
+
     }
 }
